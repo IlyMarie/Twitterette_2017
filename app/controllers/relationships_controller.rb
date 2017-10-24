@@ -5,21 +5,21 @@ class RelationshipsController < ApplicationController
     @relationship = current_user.relationships.build(friend_id: @friend.id)
 
     if @relationship.save
-    flash[:notice] = "You're not following #{@friend.username}."
-    redirect_to profile_path(@friend.id)
+      flash[:notice] = "You're not following #{@friend.username}."
+      redirect_to profile_path(@friend.id)
     else
 
-    flash[:notice] = "Unable to follow"
-    redirect_to profile_path(@friend_id)
+      flash[:notice] = "Unable to follow"
+      redirect_to profile_path(@friend.id)
     end
 end
 
 def destroy
   @relationship = current_user.relationships.find(params[:id])
   @relationship.destroy
-  @friend = User.find(params[:id])
+  # @friend = User.find(params[:id])
 
-  flash[:notice] = "No longer stalking #{@friend.username}"
+  flash[:notice] = "No longer stalking"
   redirect_to profile_path(current_user.id)
 end
 
