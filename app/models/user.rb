@@ -11,6 +11,8 @@ has_many :friends, through: :relationships
 has_many :inverse_relationships, class_name: "Relationships", foreign_key: "friend_id"
 has_many :inverse_friends, through: :inverse_relationships, source: :user
 
+has_many :likes
+
 mount_uploader :avatar, AvatarUploader
 
 validates :name, presence: true
